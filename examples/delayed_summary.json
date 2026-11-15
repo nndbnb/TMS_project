@@ -1,0 +1,77 @@
+{
+  "scenario": "delayed",
+  "finished": true,
+  "ticks": 64,
+  "tasks_total": 3,
+  "tasks_completed": 3,
+  "tasks_unassignable": 0,
+  "tasks_unfinished": 0,
+  "messages_sent": 35,
+  "messages_by_kind": {
+    "STATUS": 26,
+    "ASSIGN": 3,
+    "ACCEPT": 3,
+    "COMPLETE": 3
+  },
+  "distance": 34,
+  "charge_wait_ticks": 1,
+  "mission_makespan": 58,
+  "tasks": [
+    {
+      "id": "urgent",
+      "status": "completed",
+      "assignee": "R2",
+      "assigned_at": 10,
+      "delivered_at": 17,
+      "completed_at": 23,
+      "reason": null,
+      "delivery_tardiness": 5
+    },
+    {
+      "id": "regular",
+      "status": "completed",
+      "assignee": "R1",
+      "assigned_at": 10,
+      "delivered_at": 19,
+      "completed_at": 27,
+      "reason": null,
+      "delivery_tardiness": null
+    },
+    {
+      "id": "late",
+      "status": "completed",
+      "assignee": "R1",
+      "assigned_at": 45,
+      "delivered_at": 52,
+      "completed_at": 58,
+      "reason": null,
+      "delivery_tardiness": null
+    }
+  ],
+  "robots": [
+    {
+      "id": "R1",
+      "position": [
+        0,
+        0
+      ],
+      "battery": 24,
+      "state": "idle",
+      "task_id": null,
+      "distance": 24,
+      "charge_wait_ticks": 1
+    },
+    {
+      "id": "R2",
+      "position": [
+        0,
+        0
+      ],
+      "battery": 24,
+      "state": "idle",
+      "task_id": null,
+      "distance": 10,
+      "charge_wait_ticks": 0
+    }
+  ]
+}

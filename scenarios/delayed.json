@@ -1,0 +1,18 @@
+{
+  "name": "delayed",
+  "width": 5,
+  "height": 5,
+  "home": [0, 0],
+  "charger_slots": 1,
+  "charge_rate": 3,
+  "reserve": 2,
+  "robots": [
+    {"id": "R1", "capacity": 2, "battery": 24},
+    {"id": "R2", "capacity": 5, "battery": 24}
+  ],
+  "tasks": [
+    {"id": "urgent", "pickup": [1, 1], "dropoff": [3, 2], "weight": 4, "release": 10, "priority": 2, "deadline": 12},
+    {"id": "regular", "pickup": [2, 1], "dropoff": [4, 3], "weight": 1, "release": 10},
+    {"id": "late", "pickup": [0, 2], "dropoff": [2, 3], "weight": 2, "release": 45}
+  ]
+}

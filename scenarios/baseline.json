@@ -1,0 +1,23 @@
+{
+  "name": "baseline",
+  "width": 8,
+  "height": 6,
+  "home": [0, 0],
+  "charger_slots": 1,
+  "charge_rate": 4,
+  "reserve": 2,
+  "robots": [
+    {"id": "R1", "capacity": 2, "battery": 32},
+    {"id": "R2", "capacity": 5, "battery": 40},
+    {"id": "R3", "capacity": 8, "battery": 48}
+  ],
+  "tasks": [
+    {"id": "T1", "pickup": [1, 1], "dropoff": [4, 1], "weight": 2, "priority": 1, "deadline": 15},
+    {"id": "T2", "pickup": [2, 0], "dropoff": [5, 2], "weight": 4},
+    {"id": "T3", "pickup": [1, 2], "dropoff": [6, 4], "weight": 7},
+    {"id": "T4", "pickup": [3, 1], "dropoff": [7, 3], "weight": 2, "release": 8},
+    {"id": "T5", "pickup": [2, 2], "dropoff": [4, 4], "weight": 5, "release": 12, "priority": 2},
+    {"id": "T6", "pickup": [0, 3], "dropoff": [3, 5], "weight": 1, "release": 20},
+    {"id": "T7", "pickup": [5, 0], "dropoff": [6, 2], "weight": 6, "release": 25}
+  ]
+}

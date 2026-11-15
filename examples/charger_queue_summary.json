@@ -1,0 +1,99 @@
+{
+  "scenario": "charger_queue",
+  "finished": true,
+  "ticks": 45,
+  "tasks_total": 4,
+  "tasks_completed": 4,
+  "tasks_unassignable": 0,
+  "tasks_unfinished": 0,
+  "messages_sent": 43,
+  "messages_by_kind": {
+    "STATUS": 31,
+    "ASSIGN": 4,
+    "ACCEPT": 4,
+    "COMPLETE": 4
+  },
+  "distance": 30,
+  "charge_wait_ticks": 31,
+  "mission_makespan": 30,
+  "tasks": [
+    {
+      "id": "T1",
+      "status": "completed",
+      "assignee": "R1",
+      "assigned_at": 1,
+      "delivered_at": 7,
+      "completed_at": 12,
+      "reason": null,
+      "delivery_tardiness": null
+    },
+    {
+      "id": "T2",
+      "status": "completed",
+      "assignee": "R2",
+      "assigned_at": 1,
+      "delivered_at": 7,
+      "completed_at": 12,
+      "reason": null,
+      "delivery_tardiness": null
+    },
+    {
+      "id": "T3",
+      "status": "completed",
+      "assignee": "R3",
+      "assigned_at": 1,
+      "delivered_at": 7,
+      "completed_at": 12,
+      "reason": null,
+      "delivery_tardiness": null
+    },
+    {
+      "id": "T4",
+      "status": "completed",
+      "assignee": "R1",
+      "assigned_at": 21,
+      "delivered_at": 26,
+      "completed_at": 30,
+      "reason": null,
+      "delivery_tardiness": null
+    }
+  ],
+  "robots": [
+    {
+      "id": "R1",
+      "position": [
+        0,
+        0
+      ],
+      "battery": 12,
+      "state": "idle",
+      "task_id": null,
+      "distance": 14,
+      "charge_wait_ticks": 7
+    },
+    {
+      "id": "R2",
+      "position": [
+        0,
+        0
+      ],
+      "battery": 12,
+      "state": "idle",
+      "task_id": null,
+      "distance": 8,
+      "charge_wait_ticks": 8
+    },
+    {
+      "id": "R3",
+      "position": [
+        0,
+        0
+      ],
+      "battery": 12,
+      "state": "idle",
+      "task_id": null,
+      "distance": 8,
+      "charge_wait_ticks": 16
+    }
+  ]
+}

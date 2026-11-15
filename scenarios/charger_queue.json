@@ -1,0 +1,20 @@
+{
+  "name": "charger_queue",
+  "width": 4,
+  "height": 3,
+  "home": [0, 0],
+  "charger_slots": 1,
+  "charge_rate": 1,
+  "reserve": 2,
+  "robots": [
+    {"id": "R1", "capacity": 2, "battery": 12},
+    {"id": "R2", "capacity": 2, "battery": 12},
+    {"id": "R3", "capacity": 2, "battery": 12}
+  ],
+  "tasks": [
+    {"id": "T1", "pickup": [1, 0], "dropoff": [3, 1], "weight": 1},
+    {"id": "T2", "pickup": [1, 0], "dropoff": [3, 1], "weight": 1},
+    {"id": "T3", "pickup": [1, 0], "dropoff": [3, 1], "weight": 1},
+    {"id": "T4", "pickup": [1, 0], "dropoff": [2, 1], "weight": 2, "release": 20}
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "scenario": "infeasible",
+  "finished": true,
+  "ticks": 14,
+  "tasks_total": 3,
+  "tasks_completed": 1,
+  "tasks_unassignable": 2,
+  "tasks_unfinished": 0,
+  "messages_sent": 11,
+  "messages_by_kind": {
+    "STATUS": 8,
+    "ASSIGN": 1,
+    "ACCEPT": 1,
+    "COMPLETE": 1
+  },
+  "distance": 6,
+  "charge_wait_ticks": 0,
+  "mission_makespan": 10,
+  "tasks": [
+    {
+      "id": "valid",
+      "status": "completed",
+      "assignee": "R1",
+      "assigned_at": 1,
+      "delivered_at": 6,
+      "completed_at": 10,
+      "reason": null,
+      "delivery_tardiness": null
+    },
+    {
+      "id": "too_heavy",
+      "status": "unassignable",
+      "assignee": null,
+      "assigned_at": null,
+      "delivered_at": null,
+      "completed_at": null,
+      "reason": "Ни один робот не проходит ограничения массы и энергии полного рейса",
+      "delivery_tardiness": null
+    },
+    {
+      "id": "too_far",
+      "status": "unassignable",
+      "assignee": null,
+      "assigned_at": null,
+      "delivered_at": null,
+      "completed_at": null,
+      "reason": "Ни один робот не проходит ограничения массы и энергии полного рейса",
+      "delivery_tardiness": null
+    }
+  ],
+  "robots": [
+    {
+      "id": "R1",
+      "position": [
+        0,
+        0
+      ],
+      "battery": 12,
+      "state": "idle",
+      "task_id": null,
+      "distance": 6,
+      "charge_wait_ticks": 0
+    }
+  ]
+}

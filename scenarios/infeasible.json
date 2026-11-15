@@ -1,0 +1,15 @@
+{
+  "name": "infeasible",
+  "width": 8,
+  "height": 6,
+  "home": [0, 0],
+  "charger_slots": 1,
+  "charge_rate": 3,
+  "reserve": 2,
+  "robots": [{"id": "R1", "capacity": 3, "battery": 12}],
+  "tasks": [
+    {"id": "valid", "pickup": [1, 0], "dropoff": [2, 1], "weight": 2},
+    {"id": "too_heavy", "pickup": [1, 1], "dropoff": [2, 1], "weight": 10},
+    {"id": "too_far", "pickup": [6, 4], "dropoff": [7, 5], "weight": 1}
+  ]
+}

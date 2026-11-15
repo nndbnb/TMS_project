@@ -1,0 +1,9 @@
+[project]
+name = "tms-warehouse"
+version = "0.1.0"
+description = "ЛР1: спецификация и прототип складской многоагентной системы"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.ruff]
+line-length = 100
