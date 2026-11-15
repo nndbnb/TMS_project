@@ -6,7 +6,7 @@ import sys
 import tempfile
 import unittest
 
-from warehouse.agents import Robot
+from warehouse.agents import Robot, RobotContext
 from warehouse.environment import ChargingStation
 from warehouse.model import Scenario, State, TaskStatus
 from warehouse.protocol import Kind, MessageBus, Trace
@@ -163,7 +163,7 @@ class ProtocolTests(unittest.TestCase):
         scenario = Scenario.from_dict(configuration())
         trace = Trace()
         bus = MessageBus({"dispatcher", "r1"}, trace)
-        robot = Robot(scenario.robots[0], scenario, bus, trace, ChargingStation(1))
+        robot = Robot(scenario.robots[0], RobotContext.from_scenario(scenario), bus, trace, ChargingStation(1))
         task = scenario.tasks[0].to_dict()
         task["weight"] = 100
         bus.send(0, "dispatcher", "r1", Kind.ASSIGN, "t1", task=task)
@@ -188,7 +188,7 @@ class ProtocolTests(unittest.TestCase):
         scenario = Scenario.from_dict(configuration())
         trace = Trace()
         bus = MessageBus({"dispatcher", "r1"}, trace)
-        robot = Robot(scenario.robots[0], scenario, bus, trace, ChargingStation(1))
+        robot = Robot(scenario.robots[0], RobotContext.from_scenario(scenario), bus, trace, ChargingStation(1))
         robot.step(0)  # initial idle already announced
         task = {**scenario.tasks[0].to_dict(), "weight": 100}
         bus.send(0, "dispatcher", "r1", Kind.ASSIGN, "t1", task=task)

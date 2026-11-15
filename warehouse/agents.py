@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 from .environment import ChargingStation
-from .model import RobotSpec, Scenario, State, Task, TaskStatus
+from .model import Point, RobotSpec, Scenario, State, Task, TaskStatus
 from .protocol import Kind, MessageBus, Trace
 from .strategies import AllocationStrategy, can_execute
 
@@ -86,11 +86,24 @@ class Dispatcher:
                    for r in self.records.values())
 
 
+@dataclass(frozen=True)
+class RobotContext:
+    """Public rules needed by a robot; no task registry or other robot specs."""
+
+    home: Point
+    reserve: int
+    charge_rate: int
+
+    @classmethod
+    def from_scenario(cls, scenario: Scenario) -> "RobotContext":
+        return cls(scenario.home, scenario.reserve, scenario.charge_rate)
+
+
 class Robot:
-    def __init__(self, spec: RobotSpec, scenario: Scenario, bus: MessageBus,
+    def __init__(self, spec: RobotSpec, context: RobotContext, bus: MessageBus,
                  trace: Trace, station: ChargingStation):
-        self.spec, self.scenario, self.bus, self.trace, self.station = spec, scenario, bus, trace, station
-        self.position, self.battery, self.state = scenario.home, spec.battery, State.IDLE
+        self.spec, self.context, self.bus, self.trace, self.station = spec, context, bus, trace, station
+        self.position, self.battery, self.state = context.home, spec.battery, State.IDLE
         self.task: Task | None = None
         self.travelled = 0
         self.charge_wait_ticks = 0
@@ -136,9 +149,9 @@ class Robot:
             reason = "busy"
         elif task.id != message.task_id or task.release > tick:
             reason = "invalid_task"
-        elif not can_execute(self.spec, task, self.scenario.home, self.scenario.reserve):
+        elif not can_execute(self.spec, task, self.context.home, self.context.reserve):
             reason = "capacity_or_energy"
-        elif self.position != self.scenario.home or self.battery != self.spec.battery:
+        elif self.position != self.context.home or self.battery != self.spec.battery:
             reason = "not_ready"
         if reason:
             self.bus.send(tick, self.spec.id, "dispatcher", Kind.REJECT, message.task_id, reason=reason)
@@ -164,7 +177,7 @@ class Robot:
             self.trace.add(tick, "delivered", self.spec.id, task_id=self.task.id)
             self._transition(tick, State.RETURNING)
         elif self.state == State.RETURNING:
-            if self._move(tick, self.scenario.home):
+            if self._move(tick, self.context.home):
                 self.bus.send(tick, self.spec.id, "dispatcher", Kind.COMPLETE, self.task.id)
                 self.task = None
                 self._transition(tick, State.WAITING_CHARGE if self.battery < self.spec.battery else State.IDLE)
@@ -174,7 +187,7 @@ class Robot:
             else:
                 self.charge_wait_ticks += 1
         elif self.state == State.CHARGING:
-            self.battery = min(self.spec.battery, self.battery + self.scenario.charge_rate)
+            self.battery = min(self.spec.battery, self.battery + self.context.charge_rate)
             self.trace.add(tick, "charged", self.spec.id, battery=self.battery)
             if self.battery == self.spec.battery:
                 self.station.release(self.spec.id)

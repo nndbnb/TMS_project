@@ -4,7 +4,7 @@ from collections import Counter
 from dataclasses import asdict
 import json
 from pathlib import Path
-from .agents import Dispatcher, Robot
+from .agents import Dispatcher, Robot, RobotContext
 from .environment import ChargingStation
 from .model import Scenario, State, TaskStatus
 from .protocol import MessageBus, Trace
@@ -17,7 +17,8 @@ class Simulation:
         self.bus = MessageBus({"dispatcher", *(r.id for r in scenario.robots)}, self.trace)
         self.station = ChargingStation(scenario.charger_slots)
         self.dispatcher = Dispatcher(scenario, self.bus, self.trace, strategy or LeastCapacitySlack())
-        self.robots = [Robot(r, scenario, self.bus, self.trace, self.station)
+        context = RobotContext.from_scenario(scenario)
+        self.robots = [Robot(r, context, self.bus, self.trace, self.station)
                        for r in sorted(scenario.robots, key=lambda r: r.id)]
         self.tick = 0
         self.finished = False
